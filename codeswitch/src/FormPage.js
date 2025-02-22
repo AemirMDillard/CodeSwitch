@@ -1,15 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./FormPage.css";
 import { useNavigate } from "react-router-dom";
 
 function FormPage() {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    skills: [],
-  });
-
   const skillsOptions = [
     "Frontend",
     "Backend",
@@ -19,6 +13,17 @@ function FormPage() {
     "Mobile Development",
     "Data Science",
   ];
+
+  // Load form data from localStorage when the page loads
+  const [formData, setFormData] = useState(() => {
+    const savedData = JSON.parse(localStorage.getItem("formData"));
+    return savedData || { name: "", email: "", skills: [] };
+  });
+
+  // Save form data to localStorage whenever it updates
+  useEffect(() => {
+    localStorage.setItem("formData", JSON.stringify(formData));
+  }, [formData]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -38,6 +43,9 @@ function FormPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form Submitted:", formData);
+
+    // Save to localStorage (redundant but ensures latest state)
+    localStorage.setItem("formData", JSON.stringify(formData));
 
     // Redirect to the Matching Page
     navigate("/matching");

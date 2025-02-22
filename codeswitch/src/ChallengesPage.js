@@ -1,75 +1,85 @@
-import React, { useState } from "react";
-import "./challenges.css";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "./challenges.css"; // Import CSS file
 
-const challenges = [
-  {
-    id: 1,
-    name: "AI for Social Good",
-    company: "BlackTech Solutions",
-    description: "Develop an AI model that improves community well-being.",
-    prize: "$5000 + Internship",
-    hashtags: ["#AI", "#MachineLearning", "#SocialImpact"],
-  },
-  {
-    id: 2,
-    name: "E-Commerce Revamp",
-    company: "AfroMarket",
-    description: "Redesign an e-commerce platform for a Black-owned business.",
-    prize: "$3000",
-    hashtags: ["#WebDev", "#UIUX", "#Ecommerce"],
-  },
-  {
-    id: 3,
-    name: "Cybersecurity for Startups",
-    company: "SecureBlack",
-    description: "Develop security solutions for Black-owned startups.",
-    prize: "$4000",
-    hashtags: ["#Cybersecurity", "#Startups"],
-  },
+const challengesData = [
+  { id: 1, name: "AI for Social Good", description: "Develop an AI solution to tackle social justice issues.", hashtags: ["#AI", "#MachineLearning"] },
+  { id: 2, name: "FinTech Innovation", description: "Create a financial tool to help underbanked communities.", hashtags: ["#Finance", "#Blockchain"] },
+  { id: 3, name: "Health Tech for All", description: "Build a digital health solution for accessibility.", hashtags: ["#HealthTech", "#Accessibility"] },
 ];
 
 function ChallengesPage() {
-  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+  const [selectedChallenges, setSelectedChallenges] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredChallenges, setFilteredChallenges] = useState(challengesData);
+
+  // Load selected challenges from localStorage on page load
+  useEffect(() => {
+    const savedChallenges = JSON.parse(localStorage.getItem("selectedChallenges")) || [];
+    setSelectedChallenges(savedChallenges);
+  }, []);
+
+  // Save selected challenges to localStorage
+  const toggleChallenge = (challengeName) => {
+    setSelectedChallenges((prev) => {
+      const updated = prev.includes(challengeName)
+        ? prev.filter((ch) => ch !== challengeName)
+        : [...prev, challengeName];
+
+      localStorage.setItem("selectedChallenges", JSON.stringify(updated));
+      return updated;
+    });
+  };
 
   // Filter challenges based on search input
-  const filteredChallenges = challenges.filter((challenge) =>
-    challenge.hashtags.some((tag) =>
-      tag.toLowerCase().includes(search.toLowerCase())
-    )
-  );
+  useEffect(() => {
+    setFilteredChallenges(
+      challengesData.filter((challenge) =>
+        challenge.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        challenge.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        challenge.hashtags.some((tag) => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+      )
+    );
+  }, [searchTerm]);
 
   return (
-    <div className="challenges-container">
-      <h1>Hackathon Challenges</h1>
+    <div className="challenges-wrapper">
+      <button className="return-home-btn" onClick={() => navigate("/profile")}>
+        Go to Profile
+      </button>
+      <h1 className="page-title">Hackathon Challenges</h1>
+      
       <input
         type="text"
-        placeholder="Search by hashtag (e.g., #AI, #WebDev)"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="search-box"
+        className="search-bar"
+        placeholder="Search challenges..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <div className="challenges-grid">
-        {filteredChallenges.length > 0 ? (
-          filteredChallenges.map((challenge) => (
-            <div key={challenge.id} className="challenge-card">
-              <h2>{challenge.name}</h2>
-              <p><strong>Company:</strong> {challenge.company}</p>
-              <p>{challenge.description}</p>
-              <p><strong>Prize:</strong> {challenge.prize}</p>
-              <div className="hashtags">
-                {challenge.hashtags.map((tag, index) => (
-                  <span key={index} className="hashtag">{tag}</span>
-                ))}
-              </div>
+
+      <div className="challenges-container">
+        {filteredChallenges.map((challenge) => (
+          <div
+            key={challenge.name} 
+            className={`challenge-box ${selectedChallenges.includes(challenge.name) ? "selected" : ""}`}
+            onClick={() => toggleChallenge(challenge.name)}
+          >
+            <h2>{challenge.name}</h2>
+            <p>{challenge.description}</p>
+            <div className="hashtags">
+              {challenge.hashtags.map((tag, index) => (
+                <span key={index} className="hashtag">{tag}</span>
+              ))}
             </div>
-          ))
-        ) : (
-          <p className="no-results">No challenges found.</p>
-        )}
+            <button className="add-challenge-btn">
+              {selectedChallenges.includes(challenge.name) ? "Added ✅" : "Add Challenge"}
+            </button>
+          </div>
+        ))}
       </div>
     </div>
   );
 }
 
 export default ChallengesPage;
-
