@@ -1,0 +1,114 @@
+/* MATCHING PAGE STYLING */
+.matching-page {
+    background: #000; /* Black background */
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    text-transform: uppercase;
+    color: #00aaff; /* Neon blue */
+    text-shadow: 0 0 15px rgba(0, 170, 255, 0.8);
+    margin-bottom: 20px;
+  }
+  
+  /* PROFILE GRID */
+  .profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  /* INDIVIDUAL PROFILE CARD */
+  .profile-card {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(0, 170, 255, 0.8);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .profile-card:hover {
+    transform: scale(1.05);
+  }
+  
+  /* PROFILE IMAGE */
+  .profile-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid #00aaff;
+    margin-bottom: 10px;
+  }
+  
+  /* NAME */
+  .profile-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: white;
+  }
+  
+  /* SKILLS */
+  .profile-skills {
+    font-size: 1rem;
+    color: #ff0033; /* Neon red */
+    margin-bottom: 15px;
+  }
+  
+  /* REQUEST BUTTON */
+  .request-button {
+    background: none;
+    color: #00aaff;
+    border: 2px solid #00aaff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px rgba(0, 170, 255, 0.8);
+  }
+  
+  .request-button:hover {
+    background: #00aaff;
+    color: #000;
+    transform: scale(1.1);
+  }
+  
+  /* NAVIGATION BUTTON */
+  .challenge-button {
+    margin-top: 30px;
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 2px solid #ff0033;
+    color: #ff0033;
+    background: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(255, 0, 51, 0.8);
+  }
+  
+  .challenge-button:hover {
+    background: #ff0033;
+    color: #000;
+    transform: scale(1.1);
+  }
+  

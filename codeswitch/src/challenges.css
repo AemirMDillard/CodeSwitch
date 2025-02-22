@@ -1,0 +1,63 @@
+/* CHALLENGES PAGE STYLING */
+.challenges-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .search-box {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #00aaff;
+    background: black;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  
+  .challenges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .challenge-card {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(0, 170, 255, 0.8);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: left;
+    box-shadow: 0 0 15px rgba(0, 170, 255, 0.5);
+  }
+  
+  .challenge-card h2 {
+    color: #00aaff;
+  }
+  
+  .challenge-card p {
+    color: white;
+  }
+  
+  .hashtags {
+    margin-top: 10px;
+  }
+  
+  .hashtag {
+    display: inline-block;
+    background: #ff0033;
+    color: white;
+    padding: 5px 10px;
+    margin: 5px 2px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  
+  .no-results {
+    color: red;
+    font-size: 18px;
+    margin-top: 20px;
+  }
+  
