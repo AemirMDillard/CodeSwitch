@@ -63,7 +63,7 @@ function ProfilesPage() {
 
   return (
     <div className="profile-wrapper">
-      <button className="return-home-btn" onClick={() => navigate("/")}>🏠 Home</button>
+      <button className="return-home-btn" onClick={() => navigate("/matching")}>Matches</button>
 
       <div className="profile-header">
         <div className="profile-pic-container">

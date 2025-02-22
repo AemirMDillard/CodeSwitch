@@ -7,6 +7,8 @@ const sampleProfiles = [
   { id: 2, name: "Jordan Smith", skills: ["Backend", "Node.js"] },
   { id: 3, name: "Taylor Brown", skills: ["AI", "Python"] },
   { id: 4, name: "Morgan Lee", skills: ["Cybersecurity", "Ethical Hacking"] },
+  { id: 5, name: "Kevin Parris", skills: ["Cybersecurity", "Ethical Hacking"] },
+  { id: 6, name: "Meghan Tree", skills: ["Cybersecurity", "Ethical Hacking"] },
 ];
 
 function MatchingPage() {
@@ -19,9 +21,9 @@ function MatchingPage() {
     setRequestedProfiles(savedRequests);
   }, []);
 
-  const handleRequest = (id) => {
+  const handleRequest = (name) => {
     setRequestedProfiles((prev) => {
-      const updated = prev.includes(id) ? prev.filter((profile) => profile !== id) : [...prev, id];
+      const updated = prev.includes(name) ? prev.filter((profile) => profile !== name) : [...prev, name];
       localStorage.setItem("requestedProfiles", JSON.stringify(updated));
       return updated;
     });
@@ -49,8 +51,8 @@ function MatchingPage() {
             <div className="profile-avatar">{profile.name[0]}</div>
             <h2>{profile.name}</h2>
             <p>Skills: {profile.skills.join(", ")}</p>
-            <button className="request-btn" onClick={() => handleRequest(profile.id)}>
-              {requestedProfiles.includes(profile.id) ? "Requested ✅" : "Request to be a Team"}
+            <button className="request-btn" onClick={() => handleRequest(profile.name)}>
+              {requestedProfiles.includes(profile.name) ? "Requested ✅" : "Request to be a Team"}
             </button>
           </div>
         ))}

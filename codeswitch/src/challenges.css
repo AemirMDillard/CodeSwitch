@@ -8,10 +8,9 @@
     padding: 20px;
     background: black;
     color: white;
-    max-height: 400px; /* Adjust height as needed */
-    overflow-y: auto; /* Enables vertical scrolling */
-    overflow-x: hidden; /* Prevents horizontal scrolling */
-    padding: 10px;
+    margin-top: 100px;
+    max-height: 1000px; /* Adjust height as needed */
+
   }
   
   /* Title */
@@ -29,6 +28,9 @@
     width: 90%;
     max-width: 1200px;
     justify-content: center;
+    overflow-y: auto; /* Enables vertical scrolling */
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+    padding: 10px;
   }
   
   /* Challenge Box */
